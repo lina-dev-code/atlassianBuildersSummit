@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initScrollAnimations();
     initFloatingElements();
     initInteractiveElements();
+    initSpeakerModals();
     
 });
 
@@ -231,3 +232,48 @@ function safeQuerySelector(selector, callback) {
 // Console welcome message
 console.log('%c🚀 Atlassian Builders Summit 2024 🚀', 'color: #1868db; font-size: 20px; font-weight: bold;');
 console.log('%cBuild Better Together!', 'color: #82b535; font-size: 16px;');
+
+// Speaker Modal functionality
+function initSpeakerModals() {
+    const speakers = document.querySelectorAll('.speaker-card');
+    const modal = document.getElementById('bioModal');
+    const closeButton = document.querySelector('.close-button');
+    const modalName = document.getElementById('modal-name');
+    const modalPhoto = document.getElementById('modal-photo');
+    const modalBio = document.getElementById('modal-bio');
+
+    speakers.forEach(speaker => {
+        speaker.addEventListener('click', () => {
+            const name = speaker.querySelector('.speaker-name').textContent;
+            const photoSrc = speaker.querySelector('.speaker-photo').src;
+            const bioText = speaker.getAttribute('data-bio');
+
+            modalName.textContent = name;
+            modalPhoto.src = photoSrc;
+            modalBio.textContent = bioText || "Bio coming soon."; // Fallback text
+
+            modal.style.display = 'flex';
+            setTimeout(() => {
+                modal.classList.add('active');
+            }, 10);
+        });
+    });
+
+    // Close the modal when the close button is clicked
+    closeButton.addEventListener('click', () => {
+        modal.classList.remove('active');
+        setTimeout(() => {
+            modal.style.display = 'none';
+        }, 300);
+    });
+
+    // Close the modal when clicking outside the content
+    window.addEventListener('click', (event) => {
+        if (event.target === modal) {
+            modal.classList.remove('active');
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
+        }
+    });
+}
