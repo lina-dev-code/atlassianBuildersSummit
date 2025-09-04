@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initFloatingElements();
     initInteractiveElements();
     initSpeakerModals();
+    initWorkshopModals();
     
 });
 
@@ -49,189 +50,42 @@ function initScrollAnimations() {
     elementsToAnimate.forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(20px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
         observer.observe(el);
     });
 }
 
-// Dynamic floating elements system
+// Initialize floating elements animations
 function initFloatingElements() {
-    const floatingContainer = document.querySelector('.floating-elements');
+    const floatingElements = document.querySelectorAll('.floating-element');
     
-    if (!floatingContainer) return;
-
-    function createFloatingElement() {
-        const element = document.createElement('div');
-        element.className = 'floating-element';
+    floatingElements.forEach((el, index) => {
+        const xOffset = (Math.random() - 0.5) * 20; // -10 to 10
+        const yOffset = (Math.random() - 0.5) * 20; // -10 to 10
         
-        // Random positioning
-        element.style.left = Math.random() * 100 + '%';
-        element.style.top = Math.random() * 100 + '%';
-        element.style.animationDelay = Math.random() * 6 + 's';
+        el.style.animation = `float ${Math.random() * 5 + 15}s ease-in-out infinite`;
+        el.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
         
-        // Random colors from brand palette
-        const colors = [
-            'rgba(130,181,53,0.1)',
-            'rgba(191,99,243,0.1)', 
-            'rgba(255,189,89,0.1)',
-            'rgba(24,104,219,0.1)'
-        ];
-        element.style.background = colors[Math.floor(Math.random() * colors.length)];
-        
-        floatingContainer.appendChild(element);
-
-        // Remove after animation completes
+        // Add a small delay for a staggered effect
         setTimeout(() => {
-            if (element.parentNode) {
-                element.remove();
-            }
-        }, 6000);
-    }
-
-    // Create initial floating elements
-    for (let i = 0; i < 3; i++) {
-        setTimeout(createFloatingElement, i * 1000);
-    }
-
-    // Continue creating floating elements periodically
-    setInterval(createFloatingElement, 2000);
+            el.style.animationPlayState = 'running';
+        }, index * 500);
+    });
 }
 
-// Interactive elements and enhanced UX
+// Initialize interactive elements (e.g., CTA button hover)
 function initInteractiveElements() {
-    
-    // Enhanced hover effects for cards
-    const cards = document.querySelectorAll('.day-card, .detail-item');
-    
-    cards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-8px) scale(1.02)';
-        });
-        
-        card.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0) scale(1)';
-        });
-    });
-
-    // CTA button enhanced interactions
-    const ctaButtons = document.querySelectorAll('.cta-button, .hero-cta-button');
-    
-    ctaButtons.forEach(button => {
-        button.addEventListener('mouseenter', function() {
-            if (this.classList.contains('pulse')) {
-                this.style.animation = 'none';
-            }
-        });
-        
-        button.addEventListener('mouseleave', function() {
-            if (this.classList.contains('pulse')) {
-                this.style.animation = 'pulse 2s infinite';
-            }
-        });
-    });
-
-    // Logo interaction (if logo exists)
-    const logo = document.querySelector('.event-logo');
-    
-    if (logo) {
-        logo.addEventListener('click', function() {
-            // Smooth scroll to top
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-        
-        // Add cursor pointer to logo
-        logo.style.cursor = 'pointer';
-        
-        // Logo hover effect
-        logo.addEventListener('mouseenter', function() {
-            this.style.transform = 'scale(1.05)';
-            this.style.transition = 'transform 0.3s ease';
-        });
-        
-        logo.addEventListener('mouseleave', function() {
-            this.style.transform = 'scale(1)';
+    const ctaButton = document.querySelector('.cta-button');
+    if (ctaButton) {
+        ctaButton.addEventListener('mousemove', (e) => {
+            const rect = e.target.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            e.target.style.setProperty('--x', `${x}px`);
+            e.target.style.setProperty('--y', `${y}px`);
         });
     }
 }
-
-// Utility function to add ripple effect to buttons
-function addRippleEffect(element) {
-    element.addEventListener('click', function(e) {
-        const ripple = document.createElement('span');
-        const rect = this.getBoundingClientRect();
-        const size = Math.max(rect.height, rect.width);
-        const x = e.clientX - rect.left - size / 2;
-        const y = e.clientY - rect.top - size / 2;
-        
-        ripple.style.width = ripple.style.height = size + 'px';
-        ripple.style.left = x + 'px';
-        ripple.style.top = y + 'px';
-        ripple.classList.add('ripple');
-        
-        this.appendChild(ripple);
-        
-        setTimeout(() => {
-            ripple.remove();
-        }, 600);
-    });
-}
-
-// Add ripple effects to interactive elements
-document.addEventListener('DOMContentLoaded', function() {
-    const buttons = document.querySelectorAll('.cta-button, .day-card, .detail-item');
-    buttons.forEach(addRippleEffect);
-});
-
-// Scroll-based header effects
-function initScrollEffects() {
-    let lastScrollTop = 0;
-    const header = document.querySelector('header');
-    
-    window.addEventListener('scroll', function() {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        
-        // Add class for styling when scrolled
-        if (scrollTop > 100) {
-            document.body.classList.add('scrolled');
-        } else {
-            document.body.classList.remove('scrolled');
-        }
-        
-        lastScrollTop = scrollTop;
-    }, { passive: true });
-}
-
-// Initialize scroll effects
-document.addEventListener('DOMContentLoaded', initScrollEffects);
-
-// Performance optimization: Throttle scroll events
-function throttle(func, limit) {
-    let inThrottle;
-    return function() {
-        const args = arguments;
-        const context = this;
-        if (!inThrottle) {
-            func.apply(context, args);
-            inThrottle = true;
-            setTimeout(() => inThrottle = false, limit);
-        }
-    }
-}
-
-// Error handling for missing elements
-function safeQuerySelector(selector, callback) {
-    const element = document.querySelector(selector);
-    if (element && typeof callback === 'function') {
-        callback(element);
-    }
-}
-
-// Console welcome message
-console.log('%c🚀 Atlassian Builders Summit 2024 🚀', 'color: #1868db; font-size: 20px; font-weight: bold;');
-console.log('%cBuild Better Together!', 'color: #82b535; font-size: 16px;');
 
 // Speaker Modal functionality
 function initSpeakerModals() {
@@ -268,6 +122,61 @@ function initSpeakerModals() {
     });
 
     // Close the modal when clicking outside the content
+    window.addEventListener('click', (event) => {
+        if (event.target === modal) {
+            modal.classList.remove('active');
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
+        }
+    });
+}
+
+// Workshop Modal functionality
+function initWorkshopModals() {
+    const workshops = document.querySelectorAll('.workshop-item');
+    const modal = document.getElementById('workshopModal');
+    const closeButton = modal.querySelector('.close-button');
+    const modalTitle = document.getElementById('modal-workshop-title');
+    const modalAbstract = document.getElementById('modal-workshop-abstract');
+    const modalSignupButton = document.getElementById('modal-signup-button');
+
+    workshops.forEach(workshop => {
+        workshop.addEventListener('click', () => {
+            const title = workshop.getAttribute('data-title');
+            let abstract = workshop.getAttribute('data-abstract');
+            const signupLink = workshop.getAttribute('data-signup-link');
+
+            modalTitle.textContent = title;
+
+            // Step 1: Handle bullet points
+            abstract = abstract.replace(/(\[\[BULLET\]\]\s*[^\[]*)+/g, (match) => {
+                const listItems = match.split('[[BULLET]]').filter(item => item.trim() !== '');
+                if (listItems.length > 0) {
+                    return '<ul>' + listItems.map(item => `<li>${item.trim()}</li>`).join('') + '</ul>';
+                }
+                return '';
+            });
+
+            // Step 2: Handle paragraphs (after bullet points are processed)
+            const formattedAbstract = '<p>' + abstract.replace(/\[\[PARAGRAPH\]\]/g, '</p><p>') + '</p>';
+            modalAbstract.innerHTML = formattedAbstract;
+            modalSignupButton.href = signupLink;
+
+            modal.style.display = 'flex';
+            setTimeout(() => {
+                modal.classList.add('active');
+            }, 10);
+        });
+    });
+
+    closeButton.addEventListener('click', () => {
+        modal.classList.remove('active');
+        setTimeout(() => {
+            modal.style.display = 'none';
+        }, 300);
+    });
+
     window.addEventListener('click', (event) => {
         if (event.target === modal) {
             modal.classList.remove('active');

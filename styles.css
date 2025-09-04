@@ -497,6 +497,12 @@ h2::after {
     z-index: 1;
 }
 
+.track-item:hover {
+    cursor: pointer;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
 .track-item:nth-child(1) {
     border-color: #1868db;
     background: linear-gradient(135deg, rgba(24,104,219,0.05), rgba(24,104,219,0.1));
@@ -510,11 +516,6 @@ h2::after {
 .track-item:nth-child(3) {
     border-color: #bf63f3;
     background: linear-gradient(135deg, rgba(191,99,243,0.05), rgba(191,99,243,0.1));
-}
-
-.track-item:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
 }
 
 .track-item::before {
@@ -597,6 +598,7 @@ h2::after {
 }
 
 .speaker-card:hover {
+    cursor: pointer;
     transform: translateY(-5px);
     box-shadow: 0 15px 40px rgba(0,0,0,0.15);
 }
@@ -1030,4 +1032,42 @@ h2::after {
     .modal-content p {
         font-size: 1rem;
     }
+}
+/* Workshop Modal Specific Styles */
+#workshopModal .modal-content {
+    background: #f8f9fa;
+    text-align: center;
+}
+
+#modal-workshop-title {
+    font-size: 1.8rem;
+    color: #004aad;
+    margin-bottom: 1rem;
+}
+
+#modal-workshop-abstract {
+    font-size: 1rem;
+    color: #444;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    text-align: left;
+}
+
+.modal-buttons {
+    margin-top: 1.5rem;
+}
+
+.modal-buttons .cta-button {
+    font-size: 1rem;
+    padding: 0.8rem 2rem;
+}
+
+/* Styles for paragraphs within the workshop abstract modal */
+#modal-workshop-abstract p {
+    margin-bottom: 1em; /* Adds space below each paragraph */
+    text-align: left; /* Ensures text alignment remains consistent */
+}
+
+#modal-workshop-abstract p:last-child {
+    margin-bottom: 0; /* Removes extra margin from the last paragraph */
 }
