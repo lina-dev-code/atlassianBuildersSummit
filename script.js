@@ -12,8 +12,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Smooth Scrolling for anchor links
-
-
 function initSmoothScrolling() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -149,6 +147,11 @@ function initWorkshopModals() {
 
     workshops.forEach(workshop => {
         workshop.addEventListener('click', () => {
+
+            if (workshop.classList.contains('disabled')) {
+                return; // do nothing if disabled
+            }
+            
             const title = workshop.getAttribute('data-title');
             let abstract = workshop.getAttribute('data-abstract');
             const signupLink = workshop.getAttribute('data-signup-link');

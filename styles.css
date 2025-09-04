@@ -1071,3 +1071,9 @@ h2::after {
 #modal-workshop-abstract p:last-child {
     margin-bottom: 0; /* Removes extra margin from the last paragraph */
 }
+
+.workshop-item.disabled {
+    pointer-events: none;   /* makes them unclickable */
+    opacity: 0.5;           /* visually faded */
+    cursor: not-allowed;    /* shows "not allowed" mouse pointer */
+}
