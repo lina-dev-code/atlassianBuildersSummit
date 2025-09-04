@@ -12,20 +12,26 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Smooth Scrolling for anchor links
+
+
 function initSmoothScrolling() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
+            const href = this.getAttribute('href');
+            if (href.startsWith("#")) {  // only handle internal anchors
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
             }
         });
     });
 }
+
 
 // Intersection Observer for scroll animations
 function initScrollAnimations() {
