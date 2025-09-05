@@ -1,3 +1,6 @@
+/* --------------------
+   General and Base Styles
+   -------------------- */
 * {
     margin: 0;
     padding: 0;
@@ -15,12 +18,14 @@ body {
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 clamp(10px, 4vw, 20px); /* Fluid padding for smaller screens */
 }
 
-/* Header Styles */
+/* --------------------
+   Header Styles
+   -------------------- */
 header {
-    padding: 2rem 0;
+    padding: clamp(2rem, 10vh, 5rem) 0; /* Fluid padding based on viewport height */
     text-align: center;
     color: white;
     position: relative;
@@ -39,7 +44,7 @@ header {
 
 /* Hero CTA Styles */
 .hero-cta {
-    margin-top: 2rem;
+    margin-top: clamp(1rem, 5vw, 2rem);
     animation: fadeInUp 1s ease-out 0.6s both;
 }
 
@@ -47,11 +52,12 @@ header {
     display: inline-block;
     background: linear-gradient(45deg, #ffbd59, #82b535);
     color: #004aad;
-    padding: 1.2rem 2.5rem;
+    /* Use clamp() for fluid padding and font size */
+    padding: clamp(1rem, 3vw, 1.2rem) clamp(2rem, 6vw, 2.5rem);
     border-radius: 50px;
     text-decoration: none;
     font-weight: 700;
-    font-size: 1.3rem;
+    font-size: clamp(1rem, 4vw, 1.3rem);
     transition: all 0.3s ease;
     box-shadow: 0 10px 30px rgba(255,189,89,0.4);
     border: 3px solid rgba(255,255,255,0.3);
@@ -83,21 +89,23 @@ header {
 }
 
 .cta-subtext {
-    margin-top: 1rem;
-    margin-bottom: 2rem;
-    font-size: 1.1rem;
+    margin-top: clamp(0.5rem, 2vw, 1rem);
+    margin-bottom: clamp(1rem, 5vw, 2rem);
+    font-size: clamp(0.9rem, 3vw, 1.1rem);
     opacity: 0.9;
     font-style: italic;
 }
+
 /* Logo Styles */
 .logo-section {
-    margin-bottom: 2rem;
+    margin-bottom: clamp(1rem, 5vw, 2rem);
     animation: fadeInUp 1s ease-out;
 }
 
 .event-logo {
+    /* Set max-width as a percentage of the container for fluidity */
+    max-width: 80%;
     max-height: 150px;
-    max-width: 300px;
     height: auto;
     width: auto;
     border-radius: 15px;
@@ -105,16 +113,17 @@ header {
 }
 
 h1 {
-    font-size: 3.5rem;
+    /* Use clamp() for responsive font sizing */
+    font-size: clamp(2.5rem, 8vw, 3.5rem);
     font-weight: 700;
-    margin-bottom: 1rem;
+    margin-bottom: clamp(0.5rem, 2vw, 1rem);
     text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
     animation: fadeInUp 1s ease-out;
 }
 
 .subtitle {
-    font-size: 1.5rem;
-    margin-bottom: 2rem;
+    font-size: clamp(1.2rem, 4vw, 1.5rem);
+    margin-bottom: clamp(1rem, 5vw, 2rem);
     opacity: 0.95;
     animation: fadeInUp 1s ease-out 0.2s both;
 }
@@ -123,17 +132,19 @@ h1 {
     background: rgba(255,255,255,0.1);
     backdrop-filter: blur(10px);
     border-radius: 15px;
-    padding: 1.5rem;
+    padding: clamp(0.75rem, 3vw, 1.5rem);
     display: inline-block;
-    margin-top: 1rem;
+    margin-top: clamp(0.5rem, 3vw, 1rem);
     animation: fadeInUp 1s ease-out 0.4s both;
     border: 1px solid rgba(255,255,255,0.2);
 }
 
-/* Main Content Styles */
+/* --------------------
+   Main Content Styles
+   -------------------- */
 .main-content {
     background: white;
-    margin-top: -50px;
+    margin-top: -5vh; /* Fluid margin for better spacing */
     border-radius: 20px 20px 0 0;
     box-shadow: 0 -10px 30px rgba(0,0,0,0.1);
     position: relative;
@@ -141,7 +152,7 @@ h1 {
 }
 
 .section {
-    padding: 3rem 0;
+    padding: clamp(2rem, 8vw, 3rem) 0;
 }
 
 .section:not(:last-child) {
@@ -149,9 +160,9 @@ h1 {
 }
 
 h2 {
-    font-size: 2.5rem;
+    font-size: clamp(2rem, 6vw, 2.5rem);
     color: #004aad;
-    margin-bottom: 2rem;
+    margin-bottom: clamp(1rem, 4vw, 2rem);
     text-align: center;
     position: relative;
 }
@@ -168,16 +179,17 @@ h2::after {
 
 /* Schedule Grid Styles */
 .schedule-grid {
+    /* Ensures the grid items wrap responsively */
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: clamp(1rem, 4vw, 2rem);
+    margin-top: clamp(1rem, 4vw, 2rem);
 }
 
 .day-card {
     background: #cce86e;
     border-radius: 15px;
-    padding: 2rem;
+    padding: clamp(1.5rem, 5vw, 2rem);
     box-shadow: 0 8px 25px rgba(24,104,219,0.1);
     border: 2px solid transparent;
     transition: all 0.3s ease;
@@ -202,20 +214,20 @@ h2::after {
 }
 
 .day-title {
-    font-size: 1.8rem;
+    font-size: clamp(1.5rem, 5vw, 1.8rem);
     font-weight: 600;
     color: #004aad;
     margin-bottom: 0.5rem;
 }
 
 .day-date {
-    font-size: 1.1rem;
+    font-size: clamp(1rem, 3vw, 1.1rem);
     color: #666;
-    margin-bottom: 1rem;
+    margin-bottom: clamp(0.5rem, 3vw, 1rem);
 }
 
 .day-time {
-    font-size: 1.3rem;
+    font-size: clamp(1.1rem, 4vw, 1.3rem);
     font-weight: 500;
     color: #004aad;
     background: #ffbd59;
@@ -228,20 +240,20 @@ h2::after {
 .event-details {
     background: #dfb0eb;
     border-radius: 15px;
-    padding: 2rem;
-    margin-top: 2rem;
+    padding: clamp(1.5rem, 5vw, 2rem);
+    margin-top: clamp(1rem, 5vw, 2rem);
 }
 
 .details-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
+    gap: clamp(1rem, 4vw, 2rem);
+    margin-top: clamp(1rem, 4vw, 2rem);
 }
 
 .detail-item {
     text-align: center;
-    padding: 1.5rem;
+    padding: clamp(1rem, 4vw, 1.5rem);
     background: white;
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.05);
@@ -253,12 +265,12 @@ h2::after {
 }
 
 .detail-icon {
-    font-size: 3rem;
+    font-size: clamp(2rem, 8vw, 3rem);
     margin-bottom: 1rem;
 }
 
 .detail-title {
-    font-size: 1.3rem;
+    font-size: clamp(1.1rem, 4vw, 1.3rem);
     font-weight: 600;
     color: #004aad;
     margin-bottom: 0.5rem;
@@ -269,7 +281,7 @@ h2::after {
     background: linear-gradient(135deg, #1868db 0%, #004aad 50%, #82b535 100%);
     color: white;
     text-align: center;
-    padding: 4rem 2rem;
+    padding: clamp(2rem, 10vw, 4rem) clamp(1rem, 5vw, 2rem);
     margin-top: 3rem;
 }
 
@@ -277,11 +289,11 @@ h2::after {
     display: inline-block;
     background: white;
     color: #004aad;
-    padding: 1rem 2.5rem;
+    padding: clamp(0.8rem, 3vw, 1rem) clamp(2rem, 6vw, 2.5rem);
     border-radius: 50px;
     text-decoration: none;
     font-weight: 600;
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 3vw, 1.2rem);
     transition: all 0.3s ease;
     box-shadow: 0 8px 25px rgba(255,255,255,0.2);
 }
@@ -292,7 +304,9 @@ h2::after {
     background: #ffbd59;
 }
 
-/* Animation Styles */
+/* --------------------
+   Animation Styles
+   -------------------- */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -331,18 +345,20 @@ h2::after {
 
 .floating-element {
     position: absolute;
-    width: 20px;
-    height: 20px;
+    width: clamp(15px, 4vw, 20px);
+    height: clamp(15px, 4vw, 20px);
     background: rgba(130,181,53,0.1);
     border-radius: 50%;
     animation: float 6s ease-in-out infinite;
 }
 
-/* Agenda Styles */
+/* --------------------
+   Agenda Styles
+   -------------------- */
 .agenda-container {
     background: white;
     border-radius: 15px;
-    margin-bottom: 2rem;
+    margin-bottom: clamp(1.5rem, 5vw, 2rem);
     box-shadow: 0 8px 25px rgba(0,0,0,0.1);
     overflow: hidden;
     border: 2px solid #e0e0e0;
@@ -351,7 +367,7 @@ h2::after {
 .agenda-day-header {
     background: linear-gradient(135deg, #1868db, #004aad);
     color: white;
-    padding: 1.5rem 2rem;
+    padding: clamp(1rem, 4vw, 1.5rem) clamp(1.5rem, 5vw, 2rem);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -359,35 +375,43 @@ h2::after {
 }
 
 .agenda-day-title {
-    font-size: 1.8rem;
+    font-size: clamp(1.5rem, 5vw, 1.8rem);
     font-weight: 600;
     margin: 0;
 }
 
 .agenda-day-time {
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 3vw, 1.2rem);
     background: rgba(255,255,255,0.2);
     padding: 0.5rem 1rem;
     border-radius: 25px;
     backdrop-filter: blur(10px);
 }
 
+/* Use a table-like layout for better column alignment on larger screens */
 .agenda-table {
-    background: white;
+    display: table;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.agenda-header,
+.agenda-row {
+    display: table-row;
+    border-bottom: 1px solid #e0e0e0;
 }
 
 .agenda-header {
-    display: grid;
-    grid-template-columns: 280px 1fr;
     background: #f8f9fa;
     border-bottom: 2px solid #e0e0e0;
 }
 
 .agenda-time-header,
 .agenda-activity-header {
-    padding: 1rem 1.5rem;
+    display: table-cell;
+    padding: clamp(0.75rem, 3vw, 1rem) clamp(1rem, 4vw, 1.5rem);
     font-weight: 700;
-    font-size: 1.1rem;
+    font-size: clamp(0.9rem, 3vw, 1.1rem);
     color: #004aad;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -396,17 +420,11 @@ h2::after {
 .agenda-time-header {
     background: #cce86e;
     border-right: 2px solid #e0e0e0;
+    width: 280px;
 }
 
 .agenda-activity-header {
     background: #dfb0eb;
-}
-
-.agenda-row {
-    display: grid;
-    grid-template-columns: 280px 1fr;
-    border-bottom: 1px solid #e0e0e0;
-    transition: all 0.3s ease;
 }
 
 .agenda-row:hover {
@@ -419,22 +437,22 @@ h2::after {
 }
 
 .agenda-time {
-    padding: 1.5rem;
+    display: table-cell;
+    padding: clamp(1rem, 4vw, 1.5rem);
     font-weight: 600;
     color: #004aad;
     background: rgba(204,232,110,0.3);
     border-right: 2px solid #e0e0e0;
-    display: flex;
-    align-items: center;
-    font-size: 1.1rem;
+    vertical-align: top;
+    font-size: clamp(0.9rem, 3vw, 1.1rem);
 }
 
 .agenda-activity {
-    padding: 1.5rem;
-    display: flex;
-    align-items: center;
+    display: table-cell;
+    padding: clamp(1rem, 4vw, 1.5rem);
+    vertical-align: top;
     line-height: 1.4;
-    font-size: 1.1rem;
+    font-size: clamp(0.9rem, 3vw, 1.1rem);
 }
 
 .keynote-row {
@@ -453,7 +471,7 @@ h2::after {
 
 .keynote-row .agenda-activity strong {
     color: #bf63f3;
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 4vw, 1.2rem);
 }
 
 .coming-soon-agenda {
@@ -475,7 +493,7 @@ h2::after {
 
 .track-container {
     display: flex;
-    gap: 1rem;
+    gap: clamp(0.5rem, 2vw, 1rem);
     margin: 0.5rem 0;
     position: relative;
     align-items: stretch;
@@ -487,7 +505,7 @@ h2::after {
 }
 
 .track-item {
-    padding: 1rem;
+    padding: clamp(0.75rem, 3vw, 1rem);
     background: white;
     border-radius: 12px;
     border: 2px solid transparent;
@@ -565,14 +583,14 @@ h2::after {
 
 .track-item strong {
     color: #004aad;
-    font-size: 1rem;
+    font-size: clamp(0.9rem, 3vw, 1rem);
     display: block;
     margin-bottom: 0.5rem;
 }
 
 .track-item em {
     color: #666;
-    font-size: 0.9rem;
+    font-size: clamp(0.8rem, 2.5vw, 0.9rem);
     display: block;
     margin-top: 0.5rem;
 }
@@ -580,16 +598,16 @@ h2::after {
 /* Speakers Grid Styles */
 .speakers-grid {
     display: grid;
-    /* This will create a responsive grid with a minimum card width of 250px */
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
+    /* Uses minmax() for a responsive grid with a min card width of 200px */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: clamp(1rem, 4vw, 2rem);
+    margin-top: clamp(1rem, 4vw, 2rem);
     justify-items: center;
 }
 
 .speaker-card {
     background: white;
-    padding: 2rem 1.5rem;
+    padding: clamp(1.5rem, 5vw, 2rem) clamp(1rem, 4vw, 1.5rem);
     border-radius: 15px;
     box-shadow: 0 8px 25px rgba(0,0,0,0.1);
     text-align: center;
@@ -614,27 +632,29 @@ h2::after {
 }
 
 .speaker-name {
-    font-size: 1.5rem;
+    font-size: clamp(1.2rem, 4vw, 1.5rem);
     font-weight: 600;
     color: #004aad;
     margin: 0;
 }
 
 .speaker-title {
-    font-size: 1rem;
+    font-size: clamp(0.9rem, 3vw, 1rem);
     color: #666;
     margin-top: 0.5rem;
 }
 
-/* Sponsor Grid Styles */
+/* --------------------
+   Sponsor Grid Styles
+   -------------------- */
 .sponsors-container {
     background: #f8f9fa;
     border-radius: 15px;
-    padding: 2rem;
+    padding: clamp(1.5rem, 5vw, 2rem);
 }
 
 .sponsor-tier {
-    margin-bottom: 3rem;
+    margin-bottom: clamp(2rem, 6vw, 3rem);
 }
 
 .sponsor-tier:last-child {
@@ -643,65 +663,40 @@ h2::after {
 
 .sponsor-tier-title {
     text-align: center;
-    font-size: 1.5rem;
+    font-size: clamp(1.3rem, 4vw, 1.5rem);
     font-weight: 600;
     color: #004aad;
-    margin-bottom: 1.5rem;
+    margin-bottom: clamp(1rem, 4vw, 1.5rem);
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
-.platinum-tier .sponsor-tier-title {
-    color: #bf63f3;
-}
-
-.gold-tier .sponsor-tier-title {
-    color: #ffbd59;
-}
-
-.silver-tier .sponsor-tier-title {
-    color: #82b535;
-}
-
-.bronze-tier .sponsor-tier-title {
-    color: #1868db;
-}
+.platinum-tier .sponsor-tier-title { color: #bf63f3; }
+.gold-tier .sponsor-tier-title { color: #ffbd59; }
+.silver-tier .sponsor-tier-title { color: #82b535; }
+.bronze-tier .sponsor-tier-title { color: #1868db; }
 
 .sponsors-grid {
     display: grid;
-    gap: 2rem;
+    gap: clamp(1.5rem, 5vw, 2rem);
     justify-items: center;
     align-items: center;
 }
 
 /* Platinum sponsors - largest, 1 per row */
-.platinum-tier .sponsors-grid {
-    grid-template-columns: 1fr;
-}
-
+.platinum-tier .sponsors-grid { grid-template-columns: 1fr; }
 /* Gold sponsors - 2 per row */
-.gold-tier .sponsors-grid {
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-}
-
+.gold-tier .sponsors-grid { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
 /* Silver sponsors - 3 per row */
-.silver-tier .sponsors-grid {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-}
-
+.silver-tier .sponsors-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
 /* Bronze sponsors - 4 per row */
-.bronze-tier .sponsors-grid {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-}
-
+.bronze-tier .sponsors-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
 /* Innovation sponsor - special sizing between silver and bronze */
-.bronze-tier:nth-of-type(4) .sponsors-grid {
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-}
+.bronze-tier:nth-of-type(4) .sponsors-grid { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
 
 .sponsor-logo-container {
     background: white;
-    padding: 2rem;
+    padding: clamp(1.5rem, 5vw, 2rem);
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     transition: all 0.3s ease;
@@ -720,34 +715,20 @@ h2::after {
 }
 
 .platinum-tier .sponsor-logo-container {
-    max-width: 500px;
-    min-height: 200px;
-    border-color: #bf63f3;
+    max-width: 500px; min-height: 200px; border-color: #bf63f3;
 }
-
 .gold-tier .sponsor-logo-container {
-    border-color: #ffbd59;
-    max-width: 400px;
-    min-height: 180px;
+    border-color: #ffbd59; max-width: 400px; min-height: 180px;
 }
-
 .silver-tier .sponsor-logo-container {
-    border-color: #82b535;
-    max-width: 300px;
-    min-height: 140px;
+    border-color: #82b535; max-width: 300px; min-height: 140px;
 }
-
 .bronze-tier .sponsor-logo-container {
-    border-color: #1868db;
-    max-width: 280px;
-    min-height: 120px;
+    border-color: #1868db; max-width: 280px; min-height: 120px;
 }
-
 /* Innovation sponsor - larger than other bronze sponsors */
 .bronze-tier:nth-of-type(4) .sponsor-logo-container {
-    border-color: #1868db;
-    max-width: 320px;
-    min-height: 140px;
+    border-color: #1868db; max-width: 320px; min-height: 140px;
 }
 
 .sponsor-logo {
@@ -758,37 +739,12 @@ h2::after {
     min-width: 120px;
     min-height: 60px;
 }
-
-.platinum-tier .sponsor-logo {
-    max-height: 180px;
-    min-width: 180px;
-    min-height: 100px;
-}
-
-.gold-tier .sponsor-logo {
-    max-height: 150px;
-    min-width: 160px;
-    min-height: 85px;
-}
-
-.silver-tier .sponsor-logo {
-    max-height: 100px;
-    min-width: 130px;
-    min-height: 65px;
-}
-
-.bronze-tier .sponsor-logo {
-    max-height: 80px;
-    min-width: 100px;
-    min-height: 50px;
-}
-
+.platinum-tier .sponsor-logo { max-height: 180px; min-width: 180px; min-height: 100px; }
+.gold-tier .sponsor-logo { max-height: 150px; min-width: 160px; min-height: 85px; }
+.silver-tier .sponsor-logo { max-height: 100px; min-width: 130px; min-height: 65px; }
+.bronze-tier .sponsor-logo { max-height: 80px; min-width: 100px; min-height: 50px; }
 /* Innovation sponsor - larger than other bronze sponsors */
-.bronze-tier:nth-of-type(4) .sponsor-logo {
-    max-height: 90px;
-    min-width: 115px;
-    min-height: 60px;
-}
+.bronze-tier:nth-of-type(4) .sponsor-logo { max-height: 90px; min-width: 115px; min-height: 60px; }
 
 /* Placeholder styling for demo */
 .sponsor-placeholder {
@@ -800,114 +756,9 @@ h2::after {
     text-align: center;
 }
 
-/* Sponsor responsive design */
-@media (max-width: 768px) {
-    .sponsors-grid {
-        grid-template-columns: 1fr !important;
-        gap: 1.5rem;
-    }
-
-    .sponsor-logo-container {
-        max-width: 100%;
-        padding: 1.5rem;
-    }
-
-    .sponsor-tier-title {
-        font-size: 1.3rem;
-    }
-
-    .sponsors-container {
-        padding: 1.5rem;
-    }
-}
-
-/* Optional: Add media query for better mobile experience with more speakers */
-@media (max-width: 600px) {
-    .speakers-grid {
-        gap: 1.5rem;
-    }
-    
-    .speaker-card {
-        padding: 1.5rem 1rem;
-    }
-}
-
-/* Responsive Agenda Design */
-@media (max-width: 768px) {
-    .agenda-day-header {
-        flex-direction: column;
-        text-align: center;
-        gap: 1rem;
-    }
-    
-    .agenda-header,
-    .agenda-row {
-        grid-template-columns: 160px 1fr;
-    }
-    
-    .agenda-time,
-    .agenda-activity {
-        padding: 1rem;
-        font-size: 0.95rem;
-    }
-    
-    .agenda-day-title {
-        font-size: 1.5rem;
-    }
-    
-    .agenda-day-time {
-        font-size: 1rem;
-    }
-    
-    .track-container {
-        flex-direction: column;
-        align-items: stretch;
-    }
-}
-
-@media (max-width: 480px) {
-    .agenda-header,
-    .agenda-row {
-        grid-template-columns: 1fr;
-    }
-    
-    .agenda-time {
-        border-right: none;
-        border-bottom: 1px solid #e0e0e0;
-        text-align: center;
-        background: #cce86e;
-        color: #004aad;
-        font-weight: 700;
-    }
-    
-    .keynote-row .agenda-time {
-        background: #ffbd59;
-    }
-    
-    .multi-track-row .agenda-time {
-        background: rgba(204,232,110,0.8);
-    }
-    
-    .reception-row .agenda-time {
-        background: rgba(191,99,243,0.6);
-    }
-    
-    .agenda-time-header {
-        border-right: none;
-        border-bottom: 1px solid #e0e0e0;
-        text-align: center;
-    }
-    
-    .track-container {
-        gap: 0.75rem;
-    }
-    
-    .track-item {
-        padding: 0.75rem;
-    }
-}
-
-/* Responsive Design */
+/* --------------------
+   Responsive Design
+   -------------------- */
 @media (max-width: 768px) {
     h1 {
         font-size: 2.5rem;
@@ -937,8 +788,141 @@ h2::after {
     .detail-item {
         padding: 1rem;
     }
+
+    /* Sponsor responsive design */
+    .sponsors-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem;
+    }
+
+    .sponsor-logo-container {
+        max-width: 100%;
+        padding: 1.5rem;
+    }
+
+    .sponsor-tier-title {
+        font-size: 1.3rem;
+    }
+
+    .sponsors-container {
+        padding: 1.5rem;
+    }
+
+    /* Agenda Responsive Design */
+    .agenda-day-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+    
+    .agenda-header,
+    .agenda-row {
+        /* Stack the columns on smaller screens */
+        display: grid;
+        grid-template-columns: 160px 1fr;
+    }
+    
+    .agenda-time,
+    .agenda-activity {
+        padding: 1rem;
+        font-size: 0.95rem;
+    }
+    
+    .agenda-day-title {
+        font-size: 1.5rem;
+    }
+    
+    .agenda-day-time {
+        font-size: 1rem;
+    }
+    
+    .track-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
 }
 
+/* Tablet-specific layout for multi-track sections */
+@media (min-width: 481px) and (max-width: 768px) {
+    .multi-track-row .agenda-activity .track-container {
+        /* Ensures two items per row on tablets */
+        flex-wrap: wrap; 
+        justify-content: center;
+    }
+    .track-item {
+        /* Each item takes up roughly half the width */
+        flex-basis: calc(50% - 0.5rem); 
+    }
+}
+
+@media (max-width: 600px) {
+    .speakers-grid {
+        gap: 1.5rem;
+    }
+    
+    .speaker-card {
+        padding: 1.5rem 1rem;
+    }
+
+    /* Responsive adjustments for modal */
+    .modal-content {
+        padding: 1.5rem;
+    }
+    .modal-header h3 {
+        font-size: 1.5rem;
+    }
+    .modal-content p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .agenda-header,
+    .agenda-row {
+        grid-template-columns: 1fr;
+        display: block; /* Force single column layout */
+    }
+    
+    .agenda-time {
+        border-right: none;
+        border-bottom: 1px solid #e0e0e0;
+        text-align: center;
+        background: #cce86e;
+        color: #004aad;
+        font-weight: 700;
+        display: block;
+    }
+    
+    .agenda-activity {
+        display: block; /* Ensure activity is a separate block */
+    }
+    
+    .keynote-row .agenda-time {
+        background: #ffbd59;
+    }
+    
+    .multi-track-row .agenda-time {
+        background: rgba(204,232,110,0.8);
+    }
+    
+    .reception-row .agenda-time {
+        background: rgba(191,99,243,0.6);
+    }
+    
+    .agenda-time-header {
+        border-right: none;
+        border-bottom: 1px solid #e0e0e0;
+        text-align: center;
+    }
+    
+    .track-container {
+        gap: 0.75rem;
+    }
+    
+    .track-item {
+        padding: 0.75rem;
+    }
+}
 /* Modal Styles */
 .modal {
     display: none; /* Hidden by default */
@@ -1021,18 +1005,6 @@ h2::after {
     cursor: pointer;
 }
 
-/* Responsive adjustments for modal */
-@media (max-width: 600px) {
-    .modal-content {
-        padding: 1.5rem;
-    }
-    .modal-header h3 {
-        font-size: 1.5rem;
-    }
-    .modal-content p {
-        font-size: 1rem;
-    }
-}
 /* Workshop Modal Specific Styles */
 #workshopModal .modal-content {
     background: #f8f9fa;
@@ -1040,7 +1012,7 @@ h2::after {
 }
 
 #modal-workshop-title {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     color: #004aad;
     margin-bottom: 1rem;
 }

@@ -170,7 +170,14 @@ function initWorkshopModals() {
             // Step 2: Handle paragraphs (after bullet points are processed)
             const formattedAbstract = '<p>' + abstract.replace(/\[\[PARAGRAPH\]\]/g, '</p><p>') + '</p>';
             modalAbstract.innerHTML = formattedAbstract;
-            modalSignupButton.href = signupLink;
+            
+            // This is a new check to ensure the signup button is only visible if a link exists.
+            if (signupLink) {
+                modalSignupButton.href = signupLink;
+                modalSignupButton.style.display = 'inline-block';
+            } else {
+                modalSignupButton.style.display = 'none';
+            }
 
             modal.style.display = 'flex';
             setTimeout(() => {
