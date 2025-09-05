@@ -202,3 +202,81 @@ function initWorkshopModals() {
         }
     });
 }
+
+// New function to handle speaker carousel behavior for small screens
+function initSpeakerCarousel() {
+    const carouselContainer = document.querySelector('.speakers-carousel-container');
+    const speakersGrid = document.querySelector('.speakers-grid');
+    let autoScrollInterval;
+
+    // Only enable carousel on small screens
+    if (window.innerWidth <= 768) {
+        let isPaused = false;
+
+        // Auto-scrolling logic
+        const startAutoScroll = () => {
+            // A check to ensure we only start auto-scrolling if the content is actually scrollable.
+            // This is important for environments where the CSS might be missing.
+            if (carouselContainer.scrollWidth <= carouselContainer.clientWidth) {
+                console.log("Carousel content is not overflowing, auto-scroll will not be enabled.");
+                return;
+            }
+            if (autoScrollInterval) {
+                clearInterval(autoScrollInterval);
+            }
+            autoScrollInterval = setInterval(() => {
+                const scrollLeft = carouselContainer.scrollLeft;
+                const scrollWidth = carouselContainer.scrollWidth;
+                const clientWidth = carouselContainer.clientWidth;
+                
+                // If we've reached the end, scroll back to the beginning
+                if (scrollLeft + clientWidth >= scrollWidth) {
+                    carouselContainer.scrollTo({
+                        left: 0,
+                        behavior: 'smooth'
+                    });
+                } else {
+                    // Otherwise, scroll to the next card
+                    const nextCard = speakersGrid.children[Math.floor(scrollLeft / 250) + 1];
+                    if (nextCard) {
+                        carouselContainer.scrollTo({
+                            left: nextCard.offsetLeft,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            }, 5000); // scrolls every 5 seconds
+        };
+
+        // Pause on user interaction
+        const pauseAutoScroll = () => {
+            clearInterval(autoScrollInterval);
+            isPaused = true;
+        };
+        
+        // Resume after a delay
+        const resumeAutoScroll = () => {
+            if (isPaused) {
+                setTimeout(() => {
+                    isPaused = false;
+                    startAutoScroll();
+                }, 10000); // 10 second pause after manual interaction
+            }
+        };
+
+        // Add event listeners for user interaction
+        carouselContainer.addEventListener('touchstart', pauseAutoScroll, { passive: true });
+        carouselContainer.addEventListener('touchend', resumeAutoScroll, { passive: true });
+        carouselContainer.addEventListener('mousedown', pauseAutoScroll);
+        carouselContainer.addEventListener('mouseup', resumeAutoScroll);
+        
+        startAutoScroll();
+
+    }
+}
+
+// Add the new carousel function to the main initialization
+document.addEventListener('DOMContentLoaded', function() {
+    // ... existing initializations
+    initSpeakerCarousel();
+});

@@ -595,7 +595,9 @@ h2::after {
     margin-top: 0.5rem;
 }
 
-/* Speakers Grid Styles */
+/* --------------------
+   Speakers Grid Styles
+   -------------------- */
 .speakers-grid {
     display: grid;
     /* Uses minmax() for a responsive grid with a min card width of 200px */
@@ -644,6 +646,31 @@ h2::after {
     margin-top: 0.5rem;
 }
 
+/* New carousel container for speakers on mobile screens */
+@media (max-width: 768px) {
+    .speakers-grid {
+        display: flex;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x mandatory;
+        gap: 1.5rem;
+        padding-bottom: 1rem;
+        justify-content: flex-start;
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+
+    .speakers-grid::-webkit-scrollbar {
+        display: none;
+    }
+
+    .speaker-card {
+        flex: 0 0 auto;
+        width: 80%;
+        max-width: 300px;
+        scroll-snap-align: start;
+    }
+}
 /* --------------------
    Sponsor Grid Styles
    -------------------- */
