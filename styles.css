@@ -1,7 +1,7 @@
 /* --------------------
    General and Base Styles
    -------------------- */
-* {
+   * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -877,7 +877,10 @@ h2::after {
 }
 
 @media (max-width: 480px) {
-    .agenda-header,
+    .agenda-header {
+        display: none; /* This is the key change to hide the headers */
+    }
+    
     .agenda-row {
         grid-template-columns: 1fr;
         display: block; /* Force single column layout */
